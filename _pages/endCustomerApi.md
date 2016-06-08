@@ -4,6 +4,11 @@ layout: page
 title: "End Customer Api"
 ---
 
+Overview
+========
+
+This document describes the resources that make up the end customer API.
+
 * TOC
 {:toc}
 
