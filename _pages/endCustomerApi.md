@@ -4,6 +4,9 @@ layout: page
 title: "End Customer Api"
 ---
 
+* TOC
+{:toc}
+
 Current Version  
 ===============  
 You can find the current Version of the API specification as swagger file and a browsable version of it here:   
