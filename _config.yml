@@ -1,3 +1,5 @@
   name: TOGETHER Internet Services GMBH & CCA EDV für Versicherungswirtschaft GmbH
   markdown: kramdown
   include: ['_pages']
+  sass:
+    style: :compressed

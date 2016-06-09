@@ -1,4 +1,31 @@
 ---
 ---
+$table-cell-padding: 6xp 13px;
 
 @import "bootstrap";
+
+.container table {
+    width: 100%;
+    overflow: auto;
+    margin: 15px 0;
+    display: block;	
+}
+.container th {
+    border: 1px solid #ddd;
+    padding: $table-cell-padding;
+    text-align: center;	
+    font-weight: 700;
+}
+.container tbody {
+    vertical-align: middle;
+    border-color: inherit;
+}
+.container tr {
+    border-top: 1px solid #ccc;
+    background-color: #fff;
+    vertical-align: inherit;	
+}
+.container td {
+    border: 1px solid #ddd;
+    padding: $table-cell-padding;
+}

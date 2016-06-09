@@ -41,7 +41,7 @@ Parameters
 
 Many API methods take optional parameters. For GET requests, any parameters not specified as a segment in the path can be passed as an HTTP query string parameter:
 
-```Powershell
+```powershell
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons/42/claims?perPage=50&page=4"
 ```
 
@@ -49,7 +49,7 @@ In this example the '42' values are provided for the `{personId}` path parameter
 
 For POST, PUT, DELETE requests, parameters not included in the URL should be encoded as JSON with a Content-Type of 'application/json'.
 
-```Powershell 
+```powershell 
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/api/token" -Method Post -Body (ConvertTo-Json @{ grant_type= "password"; username= "alan"; password= "complete"}) 
 ```
 
@@ -66,7 +66,7 @@ Client Errors
 
 Most responses will contain a X-Correlation-Id Header that can be used to lookup an error message in the ccaonline logfiles.
 
-```Output
+```powershell
 HTTP/1.1 400 Bad Request
 Content-Length: 11
 X-Correlation-Id: 0000000-0000-0000-1e78-0080000000fc
@@ -76,7 +76,7 @@ X-Correlation-Id: 0000000-0000-0000-1e78-0080000000fc
 
 Using an api call that is not supported anymore will return a `410 Gone` response.
 
-```Output
+```powershell
 HTTP/1.1 410 Gone
 ```
 
@@ -100,7 +100,7 @@ Requests that require authentiation will return `403 Forbidden` if not authentic
 
 ## OAuth2 Bearer Token in Header
 
-```Powershell
+```powershell
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons/42" -Headers @{Authorization="TOKEN"}
 ```
 
@@ -109,7 +109,7 @@ Pagination
 
 Requests that return multiple items will be paginated to 15 items by default. You can request further pages with the `page` parameter. You can also request a larger page size (up to 100) by providing the `perPage` parameter.
 
-```Powershell
+```powershell
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons?page=4&perPage=100"
 ```
 If the page number is not provided the first page will be returned.
@@ -138,7 +138,7 @@ The pagination result contains the following properties:
 List results can be sorted using `orderBy` parameters. 
 The parameter takes a string in the form of `<propertyName> "-" asc/desc` where `<propertyName>` must be the name of a property that is part of the model returned by the list action.
 
-```Powershell
+```powershell
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons?orderBy=fullName-desc"
 ```
 Returns a list of persons orderd by the `fullName` - property in descending order.
@@ -148,7 +148,7 @@ Returns a list of persons orderd by the `fullName` - property in descending orde
 You can order by mulitple properties by providing the orderBy parameter multiple times.
 The parameters will be resolved from left to right.
 
-```Powershell
+```powershell
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons?orderBy=fullName-asc&orderBy=birthday-desc"
 ```
 
@@ -159,23 +159,22 @@ Data Filtering
 
 Filtering on the list api actions can be achieved by providing the property names as query parameter key and the filter expression as the associated value. The property names are case-insensitive.
 
-```Powershell
+```powershell
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons?birthday=2016-05-19"
 ```
 
 If an value is specified that does not match the property type, the api responds with `400 Bad Request`. 
 Date values must be passed in the form `YYYY-MM-DD`.
 
-```Powershell
+```powershell
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons?birthday=2016-05-19T10:25:00.928Z
-```
-```Output
+
 HTTP/1.1 400 Bad Request
 ```
 
 This query gets persons with birthdays after the 1. Jan 1990
 
-```Powershell
+```powershell
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons?birthday=2016-05-19
 ```
 
@@ -211,44 +210,39 @@ However, the operation can be overridden with a second query parameter, with a k
 
 This query gets persons with birthdays after the 1. Jan 1990
 
-```Powershell
+```powershell
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons?birthday=1990-01-01&birthday+op=gt"
 ```
 
 If an operation is specified that is not available in general, the api responds with `400 Bad Request`.
 
-```Powershell
+```powershell
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons?birthday=1990-01-01&birthday+op=gaussian"
-```
-```Output
+
 HTTP/1.1 400 Bad Request
 ```
 
 If an operation is specified, but not the respective filter expression, the api responds with `400 Bad Request`.
 
-```Powershell
+```powershell
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons?birthday+op=eq"
-```
-```Output
+
 HTTP/1.1 400 Bad Request
 ```
 
 If an operation is specified that is not available for the type, the api responds with (400) Bad Request.
 
-```Powershell
+```powershell
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons?birthday=2016-05-19&birthday+op=sw"
-```
-```Output
+
 HTTP/1.1 400 Bad Request
 ```
 
 The identifier property cannot be part of a filter request, because gt and lt range queries are not supported and an exact-match-query can be accomplished with the respective details request. If it is specified the api responds with (400) Bad Request.
 Example
-```Powershell
+```powershell
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons?id=1000
-```
 
-```Output
 HTTP/1.1 400 Bad Request
 Content-Length: 11
 X-Correlation-Id: 00000000-0000-0000-1c78-0080000000fc
@@ -260,20 +254,19 @@ If multiple filters are passed they are always logically composed with AND.
 
 This query gets people born on the 1. Jan 1990 named steve.
 
-```Powershell
+```powershell
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons?birthday=1990-01-01&fullName=steve"
 ```
+
 ### Case Sensitivity
 
 String filters always work case-sensitively.
 
 The /persons resource contains persons with fullnames "Steve Buscemi" and "stephen colbert"
 
-```Powershell
+```powershell
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons?fullName=Ste"
-```
 
-```Output
 HTTP/1.1 200 Ok
 
 {
@@ -289,24 +282,23 @@ To perform a range query with two specified bounds, the same property name is pa
 
 This query gets persons with a fullname beginning with A, everyone in between until the last one beginning with B.
 
-```Powershell
+```powershell
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons?fullName=A&fullName=B"
 ``` 
+
 For range queries, strings are matched with startsWith by default, and dates and numbers by their exact values. These operations cannot be overridden. If an operation is specified on a property that is part of a range query, the api responds with `400 Bad Request`.
 
-```Powershell
+```powershell
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons?fullName=A&fullName=B&fullName-op=eq"
-```
-```Output
+
 HTTP/1.1 400 Bad Request
 ```
 
 If a property is specified more than twice, the api responds with (400) Bad Request.
 
-```Powershell
+```powershell
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons?fullName=A&fullName=B&fullName=C"
-```
-```Output
+
 HTTP/1.1 400 Bad Request
 ```
 
@@ -314,22 +306,22 @@ Two equal bound expressions are allowed, to ease bound computation on the client
 
 
 This query gets persons with a full name starting with A.
-```Powershell
+
+```powershell
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons?fullName=A&fullName=A"
 ```
 
 This query gets persons with an ANP equal to a thousand
 
-```Powershell
+```powershell
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons?ANP=1000&ANP=1000"
 ```
 
 Boolean values cannot be part of a range query.
 
-```Powershell
+```powershell
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons?isCompany=false&isCompany=true"
-```
-```Output
+
 HTTP/1.1 400 Bad Request
 ```
 
@@ -343,6 +335,6 @@ Multi-Language Support
 
 If the Accept-Language Header is set, the api will return dimensional data translated to the requested language, if a translation exists.
 
-```Powershell
+```powershell
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons/42" -Headers @{'Accept-Language'='en-us'}
 ```
