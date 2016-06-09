@@ -1,6 +1,5 @@
 ---
 ---
-$table-cell-padding: 6xp 13px;
 
 @import "bootstrap";
 
@@ -12,7 +11,7 @@ $table-cell-padding: 6xp 13px;
 }
 .container th {
     border: 1px solid #ddd;
-    padding: $table-cell-padding;
+    padding: 6xp 13px;
     text-align: center;	
     font-weight: 700;
 }
@@ -27,5 +26,5 @@ $table-cell-padding: 6xp 13px;
 }
 .container td {
     border: 1px solid #ddd;
-    padding: $table-cell-padding;
+    padding: 6xp 13px;
 }

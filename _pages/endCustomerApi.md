@@ -325,11 +325,6 @@ Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons?isCom
 HTTP/1.1 400 Bad Request
 ```
 
-
-
-Cross Origin Resource Sharing
-=============================
-
 Multi-Language Support 
 ======================
 
