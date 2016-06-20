@@ -58,9 +58,8 @@ Client Errors
 
 * Querying an entity or sublists for an entity that does not exist will result in a `404 Not Found`.
 * Missing path parameters will result in `404 Not Found`.
-* Sending invalid JSON in the request body will result in a `400 Bad Request`.
-* Sending the wrong type of JSON values in the request body will result in a `400 Bad Request`.
-* Sending invalid fields will result in a `422 Unprocessable Entity` response.
+* Invalid syntax or invalid types in requests will result in `400 Bad Request` responses.
+* Requests that cannot be processed will generate a `422 Unprocessable Entity` response.
 
 ### Corellation Id
 
