@@ -16,8 +16,8 @@ Current Version
 ===============  
 You can find the current Version of the API specification as swagger file and a browsable version of it here:   
 
-* [swagger file](https://ccaonline-dev.ccaedv.at/endCustomerApi/swagger.json)  
-* [browsable version](https://ccaonline-dev.ccaedv.at/swagger-ui/)  
+* [swagger file](https://api.swaggerhub.com/apis/tiscca/EndCustomerApi/0.1.10/swagger.json)  
+* [browsable version](https://swaggerhub.com/api/tiscca/EndCustomerApi/)  
 
 Security Considerations
 =======================
