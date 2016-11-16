@@ -97,6 +97,32 @@ Authentication
 The EndCustomerAPI supports the OAuth2 Bearer Authentication.
 Requests that require authentiation will return `403 Forbidden` if not authentication is provided.
 
+## Client Authentication
+
+Client authentication information must be presented when requesting an authentication token.
+
+CCAOnline requires public clients to be registered with the CCAOnline installation.
+The registration is done by the sites CCAOnline administrator and encompasses the configuration of client credentials (client_id and client_secret).
+
+[See the RFC 6749](https://tools.ietf.org/html/rfc6749#section-2.3.1).
+
+CCAOnline only supports the HTTP Basic Authentication Scheme for Client Authentication.
+CCAOnline does not support client credentials included in the request-body.
+
+The followin example features a Basic Authorization Header that contains the client credentials (base64 encoded string for "someClientId:aSecret"). The resource owners password credentials are present in the body. 
+
+```powershell 
+Invoke-RestMethod -Uri "https://eca.ccaedv.at/api/token" -Method Post -Body @{ grant_type="password";username= "alan";password="complete"} -Headers @{"Authorization"="Basic c29tZUNsaWVudElkOmFTZWNyZXQ="}
+```
+
+## Password Grant
+
+At the moment only OAuth2s ["Resource Owner Password Credential Grant"](https://tools.ietf.org/html/rfc6749#section-4.3) is supported by the endcustomer api.
+
+## Token Endpoint
+
+The Token Endpoint for requesting a bearer token is located under https://<ccaonlineRoot>/api/token.
+
 ## OAuth2 Bearer Token in Header
 
 ```powershell
