@@ -16,7 +16,7 @@ Current Version
 ===============  
 You can find the current Version of the API specification as swagger file and a browsable version of it here:   
 
-* [swagger file](https://api.swaggerhub.com/apis/tiscca/EndCustomerApi/0.1.10/swagger.json)  
+* [swagger file](https://api.swaggerhub.com/apis/tiscca/EndCustomerApi/0.1.11/swagger.json)  
 * [browsable version](https://swaggerhub.com/api/tiscca/EndCustomerApi/)  
 
 Security Considerations
