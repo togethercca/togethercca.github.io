@@ -121,7 +121,7 @@ At the moment only OAuth2s ["Resource Owner Password Credential Grant"](https://
 
 ## Token Endpoint
 
-The Token Endpoint for requesting a bearer token is located under https://<ccaonlineRoot>/api/token.
+The Token Endpoint for requesting a bearer token is located under https://[ccaonlineRoot]/api/token.
 
 ## OAuth2 Bearer Token in Header
 
