@@ -11,79 +11,6 @@ This document describes the resources that make up the cca core dataservice api.
 * TOC
 {:toc}
 
-# Roadmap
-
-## Releaseplan
-
-| Test Release | Version | Release Date |
-| ------------ | ------- | ------------ |
-| 2017-07-13   | 2.46    | 2017-07-20   |
-| 2017-08-03   | 2.47    | 2017-08-10   |
-| 2017-08-29   | 2.48    | 2017-09-07   |
-| 2017-09-19   | 2.49    | 2017-09-28   |
-
-## Person Releated Operations
-
-| OperationName | Enitites | description | CCAOnline Version |
-|---------------| -------- | ----------- | ----------------- |
-| createAdresse | Adressen | Creats a Adresse | **2.46** |
-| getAdresse | Adressen | Gets an Adresse per Id | **2.46** |
-| editAdresse | Adressen | Edits an Adresse per Id | **2.46** |
-| getPersons | Person | Gets a List of Persons | **2.46** |
-| createPerson | Person | Creats a Person | **2.46** |
-| getPerson | Person | Gets an Person per Id | **2.46** |
-| editPerson | Person | Edits an Person per Id | **2.46** |
-| getPersonAddresses | Person | Gets addresses of a Person with Id {perId} | **2.46** |
-| getPersonVertraege | Person | Gets Vertraege of a Person with Id {perId} | **2.46** |
-| createPersonConnection | Person | Creats a connection between {perId} and {perId2} | **2.46** |
-
-## Vertrag related Operations
-
-| OperationName | Enitites | description | CCAOnline Version |
-|---------------| -------- | ----------- | ----------------- |
-| getVertraege | Vertrag | Gets a List of Vertraege | **2.46** |
-| getVertrag | Vertrag | Get Vertrag By Id | **2.46** |
-| createAntrag | Person | Creates an Antrag with Sparte | **2.44** |
-| createVertrag | Person | Creates a Vertrag with Sparte | 2.47 |
-| createOffert | Person | Creates an Offert with Sparte | 2.47 |
-| editVertrag | Vertrag | Edits a Vertrag per Id | 2.47 |
-| closeBook | Vertrag | Closed the Book of Vertrag {verId} | **2.44** |
-| openBook | Vertrag | Open the Book of Vertrag {verId} | **2.44** |
-| editVertragBuch | Vertrag | Set a Vertrag either to open or closed | 2.47 |
-| setVertragXml | Vertrag | Sets the XML of Vertrag {verId} | **2.44** |
-| createVSPToVertrag | Vertrag | Creats a VSP to Vertrag {verId} | 2.47 |
-| getVSP | Vertrag | Gets a List of VSPs of Vertrag {verId} | 2.47 |
-| getLZ | Vertrag | Get Leistungszeilen of Vertragssparte {spId} for Vertrag {verId} | 2.47 |
-| editLZ | Vertrag | Edit Leistungszeile {lzId} of Vertragssparte {spId} for Vertrag {verId} | 2.47 |
-| getVertragZusatzdaten | Vertrag, Zusatzdaten | Retrieves Zusatzdaten for the selected Vertrag {verId} | 2.47 |
-| editZusatzdaten | Vertrag, Zusatzdaten |  Edits the additional datafields for Vertrag {verId}. The data is an update - setting values for additional datafields: **sets** the data if it was not set before **replaces** the data if it was already set\n  **removes** the current value if the value is `null`. All additional datafields that are not part of the patch request are ignored.| 2.47 |
-
-## Risko related Operations
-
-| OperationName | Enitites | description | CCAOnline Version |
-|---------------| -------- | ----------- | ----------------- |
-| getKFZRisiken | KFZRisiken | Gets a List of KFZRisiken | 2.48 |
-| getKFZRisiko | KFZRisiken | Gets a KFZRisiko per Id | 2.48 |
-| editKFZRisiko | KFZRisiken | Edits a KFZRisiko per Id | 2.48 |
-| createKFZtoPerson | Person | Creats a KFZ to Person {perId} | 2.48 |
-| getSachrisiken | Sachrisiken | Liste von Sachrisiken | 2.48 |
-| getSachrisiko | Sachrisiken | Gets a Sachrisiko per Id | 2.48 |
-| editSachrisiko | Sachrisiken | Edits a Sachrisiko per Id | 2.48 |
-| createNKPtoPerson | Person | Creats a NKP to Person {perId} | 2.48 |
-
-## Dokument related Operations
-
-| OperationName | Enitites | description | CCAOnline Version |
-|---------------| -------- | ----------- | ----------------- |
-| getDokumente | Dokumente | Gets a List of Dokumente | 2.49 |
-| getDokument | Dokumente | Gets a Dokument per Id | 2.49 |
-| editDokument | Dokumente | Edits a Dokument per Id | 2.49 |
-| downloadDokument | Dokumente | downloads a document per dokId | 2.49 |
-| updateDokumentContent | Dokumente | Updates a documents content per dokId | 2.49 |
-| createDokumentToPerson | Person, Dokumente | Creats a Dokument to Person {perId} | 2.49 |
-| createDokumentToVertrag | Vertrag, Dokumente | Creats a Dokument to Vertrag {verId} | 2.49 |
-
-
 # Current Version  
 
 You can find the current Version of the API specification as swagger file and a browsable version of it here:   
@@ -427,3 +354,74 @@ Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.2/personen
 ```
 
 
+# Roadmap
+
+## Releaseplan
+
+| Test Release | Version | Release Date |
+| ------------ | ------- | ------------ |
+| 2017-07-13   | 2.46    | 2017-07-20   |
+| 2017-08-03   | 2.47    | 2017-08-10   |
+| 2017-08-29   | 2.48    | 2017-09-07   |
+| 2017-09-19   | 2.49    | 2017-09-28   |
+
+## Person Releated Operations
+
+| OperationName | Enitites | description | CCAOnline Version |
+|---------------| -------- | ----------- | ----------------- |
+| createAdresse | Adressen | Creats a Adresse | **2.46** |
+| getAdresse | Adressen | Gets an Adresse per Id | **2.46** |
+| editAdresse | Adressen | Edits an Adresse per Id | **2.46** |
+| getPersons | Person | Gets a List of Persons | **2.46** |
+| createPerson | Person | Creats a Person | **2.46** |
+| getPerson | Person | Gets an Person per Id | **2.46** |
+| editPerson | Person | Edits an Person per Id | **2.46** |
+| getPersonAddresses | Person | Gets addresses of a Person with Id {perId} | **2.46** |
+| getPersonVertraege | Person | Gets Vertraege of a Person with Id {perId} | **2.46** |
+| createPersonConnection | Person | Creats a connection between {perId} and {perId2} | **2.46** |
+
+## Vertrag related Operations
+
+| OperationName | Enitites | description | CCAOnline Version |
+|---------------| -------- | ----------- | ----------------- |
+| getVertraege | Vertrag | Gets a List of Vertraege | **2.46** |
+| getVertrag | Vertrag | Get Vertrag By Id | **2.46** |
+| createAntrag | Person | Creates an Antrag with Sparte | **2.44** |
+| createVertrag | Person | Creates a Vertrag with Sparte | 2.47 |
+| createOffert | Person | Creates an Offert with Sparte | 2.47 |
+| editVertrag | Vertrag | Edits a Vertrag per Id | 2.47 |
+| closeBook | Vertrag | Closed the Book of Vertrag {verId} | **2.44** |
+| openBook | Vertrag | Open the Book of Vertrag {verId} | **2.44** |
+| editVertragBuch | Vertrag | Set a Vertrag either to open or closed | 2.47 |
+| setVertragXml | Vertrag | Sets the XML of Vertrag {verId} | **2.44** |
+| createVSPToVertrag | Vertrag | Creats a VSP to Vertrag {verId} | 2.47 |
+| getVSP | Vertrag | Gets a List of VSPs of Vertrag {verId} | 2.47 |
+| getLZ | Vertrag | Get Leistungszeilen of Vertragssparte {spId} for Vertrag {verId} | 2.47 |
+| editLZ | Vertrag | Edit Leistungszeile {lzId} of Vertragssparte {spId} for Vertrag {verId} | 2.47 |
+| getVertragZusatzdaten | Vertrag, Zusatzdaten | Retrieves Zusatzdaten for the selected Vertrag {verId} | 2.47 |
+| editZusatzdaten | Vertrag, Zusatzdaten |  Edits the additional datafields for Vertrag {verId}. The data is an update - setting values for additional datafields: **sets** the data if it was not set before **replaces** the data if it was already set\n  **removes** the current value if the value is `null`. All additional datafields that are not part of the patch request are ignored.| 2.47 |
+
+## Risko related Operations
+
+| OperationName | Enitites | description | CCAOnline Version |
+|---------------| -------- | ----------- | ----------------- |
+| getKFZRisiken | KFZRisiken | Gets a List of KFZRisiken | 2.48 |
+| getKFZRisiko | KFZRisiken | Gets a KFZRisiko per Id | 2.48 |
+| editKFZRisiko | KFZRisiken | Edits a KFZRisiko per Id | 2.48 |
+| createKFZtoPerson | Person | Creats a KFZ to Person {perId} | 2.48 |
+| getSachrisiken | Sachrisiken | Liste von Sachrisiken | 2.48 |
+| getSachrisiko | Sachrisiken | Gets a Sachrisiko per Id | 2.48 |
+| editSachrisiko | Sachrisiken | Edits a Sachrisiko per Id | 2.48 |
+| createNKPtoPerson | Person | Creats a NKP to Person {perId} | 2.48 |
+
+## Dokument related Operations
+
+| OperationName | Enitites | description | CCAOnline Version |
+|---------------| -------- | ----------- | ----------------- |
+| getDokumente | Dokumente | Gets a List of Dokumente | 2.49 |
+| getDokument | Dokumente | Gets a Dokument per Id | 2.49 |
+| editDokument | Dokumente | Edits a Dokument per Id | 2.49 |
+| downloadDokument | Dokumente | downloads a document per dokId | 2.49 |
+| updateDokumentContent | Dokumente | Updates a documents content per dokId | 2.49 |
+| createDokumentToPerson | Person, Dokumente | Creats a Dokument to Person {perId} | 2.49 |
+| createDokumentToVertrag | Vertrag, Dokumente | Creats a Dokument to Vertrag {verId} | 2.49 |
