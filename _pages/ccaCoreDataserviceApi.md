@@ -33,6 +33,53 @@ Blank fields are included as `null` instead of being ommited.
 All timestamps are returned in ISO 8601 format:
 `YYYY-MM-DDTHH:MM:SSZ`
 
+## OMDS - References
+All Entity-Models are crated with OMDS compatibility in mind.
+The structure and relationship between entities is closely related to that of the omds 2 specification.
+All Properties that have a corrlelating OMDS property are marked in the specification with `x-omds2-property` and the OMDS 2 property name.
+
+```
+ KFZCommonProperties:
+    properties:
+      besitzerId:
+        type: integer
+        format: int32
+        description: Id of the Person owning the vehicle
+        x-cca-property-hint: Person.perId
+      fahrzeugArtCode:
+        type: string
+        x-omds2-property: FzgArtCd
+        x-cca-property-hint: kfzArtID
+        enum:
+          - "999"
+          - "ANH"
+          - "KRA"
+          - "LKW"
+          - "MOP"
+          - "OMN"
+          - "PKW"
+          - "PRO"
+          - "SON"
+          - "ZUG"
+```
+
+## CCA - Extensions
+All Properties that are specific to cca are marked with `x-cca-extension: true`.
+Most properties have a hint to which cca database column is used in the `x-cca-property-hint` extension.
+
+
+```
+  KFZViewModel:
+    allOf:
+      - $ref: '#/definitions/KFZCommonProperties'
+      - type: object
+        properties:
+          steuerbefreit:
+            type: string
+            x-cca-property-hint: KFZSteuerbefreit_T.kfzRisikentbText
+            x-cca-extension: true
+```
+
 # Parameters
 
 Many API methods take optional parameters. For GET requests, any parameters not specified as a segment in the path can be passed as an HTTP query string parameter:
@@ -56,7 +103,7 @@ Invoke-RestMethod -Uri "https://eca.ccaedv.at/api/token" -Method Post -Body (Con
 * Invalid syntax or invalid types in requests will result in `400 Bad Request` responses.
 * Requests that cannot be processed will generate a `422 Unprocessable Entity` response.
 
-### Corellation Id
+## Corellation Id
 
 Most responses will contain a X-Correlation-Id Header that can be used to lookup an error message in the ccaonline logfiles.
 
@@ -66,7 +113,7 @@ Content-Length: 11
 X-Correlation-Id: 0000000-0000-0000-1e78-0080000000fc
 ```
 
-### Removed API actions
+## Removed API actions
 
 Using an api call that is not supported anymore will return a `410 Gone` response.
 
@@ -86,8 +133,7 @@ HTTP Verbs
 | DELETE | Used for deleting resources.					|
 
 
-Authentication
-==============
+# Authentication
 
 The Core Dataservices supports the OAuth2 Bearer Authentication.
 Requests that require authentiation will return `403 Forbidden` if not authentication is provided.
