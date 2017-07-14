@@ -136,7 +136,7 @@ HTTP Verbs
 # Authentication
 
 The Core Dataservices supports the OAuth2 Bearer Authentication.
-Requests that require authentiation will return `403 Forbidden` if not authentication is provided.
+Requests that require authentiation will return `401 not authorized` if not authentication is provided.
 
 ## Client Authentication
 
@@ -153,12 +153,13 @@ CCAOnline does not support client credentials included in the request-body.
 The followin example features a Basic Authorization Header that contains the client credentials (base64 encoded string for "someClientId:aSecret"). The resource owners password credentials are present in the body. 
 
 ```powershell 
-Invoke-RestMethod -Uri "https://eca.ccaedv.at/api/token" -Method Post -Body @{ grant_type="password";username= "alan";password="complete";} -Headers @{"Authorization"="Basic c29tZUNsaWVudElkOmFTZWNyZXQ="}
+Invoke-RestMethod -Uri "https://eca.ccaedv.at/api/token" -Method Post -Body @{ grant_type="ccaauth";username="alan";password="complete";authtype="SQLLogin"} -Headers @{"Authorization"="Basic c29tZUNsaWVudElkOmFTZWNyZXQ="}
 ```
 
-## Password Grant
+## Extension Grant
 
-At the moment only OAuth2s ["Resource Owner Password Credential Grant"](https://tools.ietf.org/html/rfc6749#section-4.3) is supported by the endcustomer api.
+At the moment only OAuth2s ["Extension Grant"](https://tools.ietf.org/html/rfc6749#section-4.5) is supported by the CoreDataService api.
+Because of this we can set the grant_type to "ccaauth" and add an additional parameter for the Logintype to determine how the user should be authenticated.
 
 ## Token Endpoint
 
@@ -167,9 +168,9 @@ The Token Endpoint for requesting a bearer token is located under https://[ccaon
 ## OAuth2 Bearer Token in Header
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.2/personen/42" -Headers @{Authorization="TOKEN"}
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.2/personen/42" -Headers @{"Authorization"="Bearer TOKEN";"Accept"="application/json"}
 ```
-
+Besides the Bearer Token also the Accept Header with the value "application/json" has to be added to each request to the API.
 # Pagination
 
 Requests that return multiple items will be paginated to 15 items by default. You can request further pages with the `page` parameter. You can also request a larger page size (up to 100) by providing the `perPage` parameter.
