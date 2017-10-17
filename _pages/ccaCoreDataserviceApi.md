@@ -250,6 +250,8 @@ Filtering by nested types is also possible. For example filtering Persons by the
 Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen?natuerlichePerson.name=Testname
 ```
 
+Filtering is although still only possible for properties which are part of the entity itself like name, birthday etc. For example filtering for sonstigePerson.sonstigPersonArt ist still not possible as here fields of the Table Anrede would have to be considered and not Person.
+
 ## Filter Operations
 
 The following filter operations are available:
@@ -418,6 +420,19 @@ It is still possible to send/receive OMDS 2.9 LandesCodes. For this a Content-Ty
 Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen" -Headers @{'Content-Type'='application/json+omds2.9'}
 ```
 
+# Changelog
+
+## 2.50
+
+* Filtering for nested properties is now possible
+* Filtering for properties build for the ViewModel like "istKunde" is now possible
+* Changed default CountryCodes to OMDS Version 2.10
+* Added CountryCode support for OMDS Version 2.10 and 2.9
+* Bugfix regarding the creation of Adresses
+* Delete PersonRelation operation added
+* Delete Adresse from Person operation added
+* Tools endpoint added with berechnejnp Operation
+
 # Roadmap
 
 ## Releaseplan
@@ -427,7 +442,7 @@ Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen
 | 2017-07-13   | 2.46    | 2017-07-20   |
 | 2017-08-03   | 2.47    | 2017-08-10   |
 | 2017-08-29   | 2.48    | 2017-09-07   |
-| 2017-09-19   | 2.49    | 2017-09-28   |
+| 2017-10-18   | 2.50    | 2017-09-28   |
 
 ## Person Releated Operations
 
@@ -482,10 +497,10 @@ Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen
 
 | OperationName | Enitites | description | CCAOnline Version |
 |---------------| -------- | ----------- | ----------------- |
-| getDokumente | Dokumente | Gets a List of Dokumente | 2.49 |
-| getDokument | Dokumente | Gets a Dokument per Id | 2.49 |
-| editDokument | Dokumente | Edits a Dokument per Id | 2.49 |
-| downloadDokument | Dokumente | downloads a document per dokId | 2.49 |
-| updateDokumentContent | Dokumente | Updates a documents content per dokId | 2.49 |
-| createDokumentToPerson | Person, Dokumente | Creats a Dokument to Person {perId} | 2.49 |
-| createDokumentToVertrag | Vertrag, Dokumente | Creats a Dokument to Vertrag {verId} | 2.49 |
+| getDokumente | Dokumente | Gets a List of Dokumente | 2.50 |
+| getDokument | Dokumente | Gets a Dokument per Id | 2.50 |
+| editDokument | Dokumente | Edits a Dokument per Id | 2.50 |
+| downloadDokument | Dokumente | downloads a document per dokId | 2.50 |
+| updateDokumentContent | Dokumente | Updates a documents content per dokId | 2.50 |
+| createDokumentToPerson | Person, Dokumente | Creats a Dokument to Person {perId} | 2.50 |
+| createDokumentToVertrag | Vertrag, Dokumente | Creats a Dokument to Vertrag {verId} | 2.50 |
