@@ -15,7 +15,7 @@ This document describes the resources that make up the cca core dataservice api.
 
 You can find the current Version of the API specification as swagger file and a browsable version of it here:   
 
-* [swagger file](https://app.swaggerhub.com/apis/TIS-CCA/cca-core_data_service_api/0.2)  
+* [swagger file](https://app.swaggerhub.com/apis/TIS-CCA/cca-core_data_service_api/0.3)  
 * [browsable version](https://app.swaggerhub.com/apis/TIS-CCA/cca-core_data_service_api)  
 
 # Security Considerations
@@ -85,7 +85,7 @@ Most properties have a hint to which cca database column is used in the `x-cca-p
 Many API methods take optional parameters. For GET requests, any parameters not specified as a segment in the path can be passed as an HTTP query string parameter:
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.2/personen/42/vertraege?perPage=50&page=4"
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen/42/vertraege?perPage=50&page=4"
 ```
 
 In this example the '42' values are provided for the `{personId}` path parameters while `perPage` and `page` are passed in the query string.
@@ -168,7 +168,7 @@ The Token Endpoint for requesting a bearer token is located under https://[ccaon
 ## OAuth2 Bearer Token in Header
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.2/personen/42" -Headers @{"Authorization"="Bearer TOKEN";"Accept"="application/json"}
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen/42" -Headers @{"Authorization"="Bearer TOKEN";"Accept"="application/json"}
 ```
 Besides the Bearer Token also the Accept Header with the value "application/json" has to be added to each request to the API.
 # Pagination
@@ -176,7 +176,7 @@ Besides the Bearer Token also the Accept Header with the value "application/json
 Requests that return multiple items will be paginated to 15 items by default. You can request further pages with the `page` parameter. You can also request a larger page size (up to 100) by providing the `perPage` parameter.
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.2/personen?page=4&perPage=100"
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen?page=4&perPage=100"
 ```
 If the page number is not provided the first page will be returned.
 Page numbering starts with 1.
@@ -205,7 +205,7 @@ List results can be sorted using `orderBy` parameters.
 The parameter takes a string in the form of `<propertyName> "-" asc/desc` where `<propertyName>` must be the name of a property that is part of the model returned by the list action.
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.2/personen?orderBy=name-desc"
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen?orderBy=name-desc"
 ```
 Returns a list of persons orderd by the `name` - property in descending order.
 
@@ -215,7 +215,7 @@ You can order by mulitple properties by providing the orderBy parameter multiple
 The parameters will be resolved from left to right.
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.2/personen?orderBy=name-asc&orderBy=geburtstag-desc"
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen?orderBy=name-asc&orderBy=geburtstag-desc"
 ```
 
 Returns a list of persons sorted by `name` (in ascending order) and `geburtstag` (in descending order).
@@ -226,14 +226,14 @@ Data Filtering
 Filtering on the list api actions can be achieved by providing the property names as query parameter key and the filter expression as the associated value. The property names are case-insensitive.
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.2/personen?geburtstag=2016-05-19"
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen?geburtstag=2016-05-19"
 ```
 
 If an value is specified that does not match the property type, the api responds with `400 Bad Request`. 
 Date values must be passed in the form `YYYY-MM-DD`.
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.2/personen?geburtstag=2016-05-19T10:25:00.928Z
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen?geburtstag=2016-05-19T10:25:00.928Z
 
 HTTP/1.1 400 Bad Request
 ```
@@ -241,7 +241,13 @@ HTTP/1.1 400 Bad Request
 This query gets persons with geburtstags after the 1. Jan 1990
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.2/personen?geburtstag=2016-05-19
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen?geburtstag=2016-05-19
+```
+
+Filtering by nested types is also possible. For example filtering Persons by the name of the "natuerlichePerson" the request has to look like the following:
+
+```powershell
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen?natuerlichePerson.name=Testname
 ```
 
 ## Filter Operations
@@ -277,13 +283,13 @@ However, the operation can be overridden with a second query parameter, with a k
 This query gets persons with geburtstags after the 1. Jan 1990
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.2/personen?geburtstag=1990-01-01&geburtstag+op=gt"
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen?geburtstag=1990-01-01&geburtstag+op=gt"
 ```
 
 If an operation is specified that is not available in general, the api responds with `400 Bad Request`.
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.2/personen?geburtstag=1990-01-01&geburtstag+op=gaussian"
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen?geburtstag=1990-01-01&geburtstag+op=gaussian"
 
 HTTP/1.1 400 Bad Request
 ```
@@ -291,7 +297,7 @@ HTTP/1.1 400 Bad Request
 If an operation is specified, but not the respective filter expression, the api responds with `400 Bad Request`.
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.2/personen?geburtstag+op=eq"
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen?geburtstag+op=eq"
 
 HTTP/1.1 400 Bad Request
 ```
@@ -299,7 +305,7 @@ HTTP/1.1 400 Bad Request
 If an operation is specified that is not available for the type, the api responds with (400) Bad Request.
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.2/personen?geburtstag=2016-05-19&geburtstag+op=sw"
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen?geburtstag=2016-05-19&geburtstag+op=sw"
 
 HTTP/1.1 400 Bad Request
 ```
@@ -307,7 +313,7 @@ HTTP/1.1 400 Bad Request
 The identifier property cannot be part of a filter request, because gt and lt range queries are not supported and an exact-match-query can be accomplished with the respective details request. If it is specified the api responds with (400) Bad Request.
 Example
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.2/personen?id=1000
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen?id=1000
 
 HTTP/1.1 400 Bad Request
 Content-Length: 11
@@ -321,7 +327,7 @@ If multiple filters are passed they are always logically composed with AND.
 This query gets people born on the 1. Jan 1990 named steve.
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.2/personen?geburtstag=1990-01-01&name=steve"
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen?geburtstag=1990-01-01&name=steve"
 ```
 
 ### Case Sensitivity
@@ -331,7 +337,7 @@ String filters always work case-sensitively.
 The `/personen` resource contains persons with names "Steve Buscemi" and "stephen colbert"
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.2/personen?name=Ste"
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen?name=Ste"
 
 HTTP/1.1 200 Ok
 
@@ -349,13 +355,13 @@ To perform a range query with two specified bounds, the same property name is pa
 This query gets persons with a name beginning with A, everyone in between until the last one beginning with B.
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.2/personen?name=A&name=B"
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen?name=A&name=B"
 ``` 
 
 For range queries, strings are matched with startsWith by default, and dates and numbers by their exact values. These operations cannot be overridden. If an operation is specified on a property that is part of a range query, the api responds with `400 Bad Request`.
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.2/personen?name=A&name=B&name-op=eq"
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen?name=A&name=B&name-op=eq"
 
 HTTP/1.1 400 Bad Request
 ```
@@ -363,7 +369,7 @@ HTTP/1.1 400 Bad Request
 If a property is specified more than twice, the api responds with (400) Bad Request.
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.2/personen?name=A&name=B&name=C"
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen?name=A&name=B&name=C"
 
 HTTP/1.1 400 Bad Request
 ```
@@ -374,19 +380,19 @@ Two equal bound expressions are allowed, to ease bound computation on the client
 This query gets persons with a full name starting with A.
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.2/personen?name=A&name=A"
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen?name=A&name=A"
 ```
 
 This query gets persons with an ANP equal to a thousand
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.2/personen?ANP=1000&ANP=1000"
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen?ANP=1000&ANP=1000"
 ```
 
 Boolean values cannot be part of a range query.
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.2/personen?isCompany=false&isCompany=true"
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen?isCompany=false&isCompany=true"
 
 HTTP/1.1 400 Bad Request
 ```
@@ -397,9 +403,20 @@ HTTP/1.1 400 Bad Request
 If the Accept-Language Header is set, the api will return dimensional data translated to the requested language, if a translation exists.
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.2/personen/42" -Headers @{'Accept-Language'='en-us'}
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen/42" -Headers @{'Accept-Language'='en-us'}
 ```
 
+
+# OMDS Version Support
+
+## LandesCd
+
+Currently the api supports the cocuntry codes for the OMDS Versions 2.9 and 2.10. The default are the ISO 3166-1 alpha-3 Codes from 2.10.
+It is still possible to send/receive OMDS 2.9 LandesCodes. For this a Content-Type Attribute has to be added to the header with an additional "flavor" which indicates the required OMDS Version.
+
+```powershell
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen" -Headers @{'Content-Type'='application/json+omds2.9'}
+```
 
 # Roadmap
 
