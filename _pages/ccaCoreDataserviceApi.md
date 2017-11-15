@@ -334,7 +334,7 @@ Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v0.3/personen
 
 ### Case Sensitivity
 
-String filters always work case-sensitively.
+String filters work case-insensitive.
 
 The `/personen` resource contains persons with names "Steve Buscemi" and "stephen colbert"
 
@@ -347,6 +347,11 @@ HTTP/1.1 200 Ok
 	...
 	name: "Steve Buscemi",
 	...
+},
+{
+  ...
+  name: "stepen colbert",
+  ...
 }
 ```
 
