@@ -14,9 +14,7 @@ This document describes the resources that make up the cca core dataservice api.
 # Current Version  
 
 You can find the current Version of the API specification as swagger file and a browsable version of it here:   
-
-* [swagger file](https://app.swaggerhub.com/apis/TIS-CCA/cca-core_data_service_api/0.3)  
-* [browsable version](https://app.swaggerhub.com/apis/TIS-CCA/cca-core_data_service_api)  
+[specification](https://app.swaggerhub.com/apis/TIS-CCA/cca-core_data_service_api)
 
 # Security Considerations
 
