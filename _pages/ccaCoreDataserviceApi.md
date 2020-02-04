@@ -36,7 +36,7 @@ All Entity-Models are crated with OMDS compatibility in mind.
 The structure and relationship between entities is closely related to that of the omds 2 specification.
 All Properties that have a corrlelating OMDS property are marked in the specification with `x-omds2-property` and the OMDS 2 property name.
 
-```
+```json
  KFZCommonProperties:
     properties:
       besitzerId:
@@ -66,7 +66,7 @@ All Properties that are specific to cca are marked with `x-cca-extension: true`.
 Most properties have a hint to which cca database column is used in the `x-cca-property-hint` extension.
 
 
-```
+```json
   KFZViewModel:
     allOf:
       - $ref: '#/definitions/KFZCommonProperties'
@@ -171,6 +171,7 @@ The element has the following properties:
   <oauth>
     <add name="client_friendly_name" type="public" id="09647281976743fd09486b462b44facdbcd1a2adfacfb9af6fe81727d7a1005c" secret="2336c8ccc30e5e789c9db62d0167a68f6a5e8c659bf4173b94cee9e1895b9653" />
   </oauth>
+</CCAOnlineSettings>
 ~~~
 
 
