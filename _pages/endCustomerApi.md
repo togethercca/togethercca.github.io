@@ -91,17 +91,73 @@ HTTP Verbs
 | DELETE | Used for deleting resources.					|
 
 
+# Prerequisites 
+
+## CCAOnline
+
+The api is delivered as part of the [CCAOnline - Product](https://togethercca.com/produktwelten-cca#cca-online).
+A current ccaonline instance is needed to access the api.
+
+## Portal User
+
+The api is always accessed in the context of a customer.
+
+All data returned is restricted to that customer.
+
+## Configured Endcustomer Api
+
+
+To enable the endcustomer-api the `frontend` must be registered in ccaonline.
+
+This is done by setting the `endcustomerApi` configuration element to the `sites.config` of the ccaonline installation.
+
+The element contains the `portalFrontend` element containing the following properties, defining the accessing frontend application.
+
+- `clientId`: the `client_id` part of the clients credentials.
+- `clientSecret`: the `client_secret` part of the clients credentials.
+- `frontendName`: a friendly name used in email templates sent to customers.
+- `baseUrl`: the baseurl of the frontend.
+- `activationUrl`: A url-template containing a token `{activationToken}` that will be replaced with the activation token for the UserActivation process.
+
+The element `schadenmeldungEmail` enables and configures the claims process.
+The `defaultRecipient` email address will receives schadenmeldung emails for customers for whom the `betreuer` is not set, 
+or does not have an email address.
+
+
+
+~~~XML
+<?xml version="1.0"?>
+<CCAOnlineSettings ...>
+  <siteBindings>
+    <add name="Default" ...>
+    ...
+    </add>
+  </siteBindings>
+  <endcustomerApi>
+    <!-- enables Schadenmeldungs process. -->
+    <schadenmeldungEmail defaultRecipient="office@noreply.com" />
+    <!-- configures and enables a frontend-applicaton accessing the api -->
+    <portalFrontend clientId="09647281976743fd09486b462b44facdbcd1a2adfacfb9af6fe81727d7a1005c"
+		clientSecret="2336c8ccc30e5e789c9db62d0167a68f6a5e8c659bf4173b94cee9e1895b9653"
+		activationUrl="http://localhost/EndkundenPortal/activate?activationToken={activationToken}"
+        baseUrl="https://localhost/EndkundenPortal"
+        frontendName="KundenPortal-Dev"	/>
+  </endcustomerApi>
+</CCAOnlineSettings>
+~~~
+
+
 Authentication
 ==============
 
 The EndCustomerAPI supports the OAuth2 Bearer Authentication.
-Requests that require authentiation will return `403 Forbidden` if not authentication is provided.
+Requests that require authentiation will return `401 not authorized` if not authentication is provided.
 
 ## Client Authentication
 
 Client authentication information must be presented when requesting an authentication token.
 
-CCAOnline requires public clients to be registered with the CCAOnline installation.
+CCAOnline requires public clients to be registered endcustomerApi frontend with the CCAOnline installation.
 The registration is done by the sites CCAOnline administrator and encompasses the configuration of client credentials (client_id and client_secret).
 
 [See the RFC 6749](https://tools.ietf.org/html/rfc6749#section-2.3.1).
@@ -109,7 +165,7 @@ The registration is done by the sites CCAOnline administrator and encompasses th
 CCAOnline only supports the HTTP Basic Authentication Scheme for Client Authentication.
 CCAOnline does not support client credentials included in the request-body.
 
-The followin example features a Basic Authorization Header that contains the client credentials (base64 encoded string for "someClientId:aSecret"). The resource owners password credentials are present in the body. 
+The followin example features a Basic Authorization Header that contains the client credentials (base64 encoded string for "clientId:clientSecret"). The resource owners password credentials are present in the body. 
 
 ```powershell 
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/api/token" -Method Post -Body @{ grant_type="password";username= "alan";password="complete"} -Headers @{"Authorization"="Basic c29tZUNsaWVudElkOmFTZWNyZXQ="}
