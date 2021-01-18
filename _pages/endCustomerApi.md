@@ -259,6 +259,13 @@ This query gets persons with birthdays after the 1. Jan 1990
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons?birthday=2016-05-19
 ```
 
+
+This query gets persons who are companys 
+
+```powershell
+Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons?istfirma=true
+```
+
 ## Filter Operations
 
 The following filter operations are available:
@@ -278,7 +285,7 @@ The default filter operation, that will be applied if none is specified, is base
 | string | sw                      |
 | date   | eq                      |
 | number | eq                      |
-
+| boolean| eq                      |
 
 However, the operation can be overridden with a second query parameter, with a key of the structure `<propertyName>+op`and the operation as value. The available alternative operations are also based on the property type. The filter operation values are case insensitive and will be normalized to lowercase.
 
@@ -287,6 +294,7 @@ However, the operation can be overridden with a second query parameter, with a k
 | string | sw, cn, eq, gt, lt         |
 | date   | eq, gt, lt                 |
 | number | eq, gt, lt                 |
+| boolean| eq                         |
 
 
 This query gets persons with birthdays after the 1. Jan 1990
