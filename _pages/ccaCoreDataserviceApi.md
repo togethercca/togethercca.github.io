@@ -287,6 +287,12 @@ This query gets persons with geburtstags after the 1. Jan 1990
 Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/personen?geburtstag=2016-05-19
 ```
 
+This query gets persons who are customers
+
+```powershell
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/personen?istkunde=true
+```
+
 Filtering by nested types is also possible. For example filtering Persons by the name of the "natuerlichePerson" the request has to look like the following:
 
 ```powershell
@@ -314,6 +320,7 @@ The default filter operation, that will be applied if none is specified, is base
 | string | sw                      |
 | date   | eq                      |
 | number | eq                      |
+| boolean| eq                      |
 
 
 However, the operation can be overridden with a second query parameter, with a key of the structure `<propertyName>+op`and the operation as value. The available alternative operations are also based on the property type. The filter operation values are case insensitive and will be normalized to lowercase.
@@ -323,6 +330,7 @@ However, the operation can be overridden with a second query parameter, with a k
 | string | sw, cn, eq, gt, lt         |
 | date   | eq, gt, lt                 |
 | number | eq, gt, lt                 |
+| boolean| eq                         |
 
 
 This query gets persons with geburtstags after the 1. Jan 1990
