@@ -118,6 +118,9 @@ The element contains the `portalFrontend` element containing the following prope
 - `frontendName`: a friendly name used in email templates sent to customers.
 - `baseUrl`: the baseurl of the frontend.
 - `activationUrl`: A url-template containing a token `{activationToken}` that will be replaced with the activation token for the UserActivation process.
+- `testloginUrl`: A url-template containing a token `{token}` and a number `{validTime}`  which will be replaced with the token for the TestLogin process and a number defining how long the token is valid.
+
+The property `requireTwoFactor` defines whether the users need a second factor for logging in. 
 
 The element `schadenmeldungEmail` enables and configures the claims process.
 The `defaultRecipient` email address will receives schadenmeldung emails for customers for whom the `betreuer` is not set, 
@@ -133,7 +136,7 @@ or does not have an email address.
     ...
     </add>
   </siteBindings>
-  <endcustomerApi>
+  <endcustomerApi requireTwoFactor="false">
     <!-- enables Schadenmeldungs process. -->
     <schadenmeldungEmail defaultRecipient="office@noreply.com" />
     <!-- configures and enables a frontend-applicaton accessing the api -->
@@ -141,7 +144,9 @@ or does not have an email address.
 		clientSecret="2336c8ccc30e5e789c9db62d0167a68f6a5e8c659bf4173b94cee9e1895b9653"
 		activationUrl="http://localhost/EndkundenPortal/activate?activationToken={activationToken}"
         baseUrl="https://localhost/EndkundenPortal"
-        frontendName="KundenPortal-Dev"	/>
+        frontendName="KundenPortal-Dev"	
+        testloginUrl="http://localhost/EndkundenPortal/login?token={token}::{validTime}"
+        />
   </endcustomerApi>
 </CCAOnlineSettings>
 ~~~
@@ -150,7 +155,7 @@ or does not have an email address.
 Authentication
 ==============
 
-The EndCustomerAPI supports the OAuth2 Bearer Authentication.
+The EndCustomerAPI supports the OAuth2 Bearer Authentication and the OAuth2 Implicit Grant Flow.
 Requests that require authentiation will return `401 not authorized` if not authentication is provided.
 
 ## Client Authentication
@@ -171,13 +176,22 @@ The followin example features a Basic Authorization Header that contains the cli
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/api/token" -Method Post -Body @{ grant_type="password";username= "alan";password="complete"} -Headers @{"Authorization"="Basic c29tZUNsaWVudElkOmFTZWNyZXQ="}
 ```
 
-## Password Grant
+At the moment OAuth2s ["Resource Owner Password Credential Grant"](https://tools.ietf.org/html/rfc6749#section-4.3) and ["Implicit Grant"](https://tools.ietf.org/html/rfc6749#section-4.2) are supported by the endcustomer api.
 
-At the moment only OAuth2s ["Resource Owner Password Credential Grant"](https://tools.ietf.org/html/rfc6749#section-4.3) is supported by the endcustomer api.
+
+# Password Grant
 
 ## Token Endpoint
 
 The Token Endpoint for requesting a bearer token is located under https://[ccaonlineRoot]/api/token.
+
+# Implicit Grant
+
+## Authorize Endpoint
+
+The Authorization Endpoint for getting a access token is located under https://[ccaonlineRoot]/endcustomer/authorize
+
+
 
 ## OAuth2 Bearer Token in Header
 
