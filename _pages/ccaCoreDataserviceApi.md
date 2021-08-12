@@ -152,6 +152,7 @@ If a user is not permitted to see / create / edit a cca - entity, the api will r
 To enable the core-data-services the `consuming client` must be registered in ccaonline.
 
 This is done by adding an oauth `client` configuration element to the `sites.config` of the ccaonline installation.
+This is done by adding an element to the `<CCAOnlineSettings> <oauth>` element.
 
 The element has the following properties:
 
@@ -159,6 +160,13 @@ The element has the following properties:
 - `type`: currently all clients are considered `public` clients.
 - `id`: the `client_id` part of the clients credentials.
 - `secret`: the `client_secret` part of the clients credentials.
+
+Currently the token endpoint issues JWTs. To create the JWT parameters pointing to the CCAOnline Instance must be configured. Add a `<jwt>` element to the `<CCAOnlineSettings>` with the following properties:
+
+- `audience`: URL of the CCAOnline Instance
+- `issuer`: URL of the CCAOnline Instance
+
+Note: Core dataservice api is part of CCAOnline. CCAOnline issues and consumes the token, therefore both is set to the CCAOnline Instance URL.
 
 ~~~XML
 <?xml version="1.0"?>
@@ -171,6 +179,7 @@ The element has the following properties:
   <oauth>
     <add name="client_friendly_name" type="public" id="09647281976743fd09486b462b44facdbcd1a2adfacfb9af6fe81727d7a1005c" secret="2336c8ccc30e5e789c9db62d0167a68f6a5e8c659bf4173b94cee9e1895b9653" />
   </oauth>
+  <jwt audience="https://ccds.ccaedv.at/CCAOnline" issuer="https://ccds.ccaedv.at/CCAOnline" />
 </CCAOnlineSettings>
 ~~~
 
