@@ -436,3 +436,7 @@ If the Accept-Language Header is set, the api will return dimensional data trans
 ```powershell
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons/42" -Headers @{'Accept-Language'='en-us'}
 ```
+
+Changelog
+======================
+20.06.2022 - V0.1.16 - Added Dashboard Vertrag and Schaden
