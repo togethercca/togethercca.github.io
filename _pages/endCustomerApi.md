@@ -436,3 +436,29 @@ If the Accept-Language Header is set, the api will return dimensional data trans
 ```powershell
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons/42" -Headers @{'Accept-Language'='en-us'}
 ```
+
+## Changelog
+30.11.2022 Published all endpoints related and relevant to Proversum: https://app.swaggerhub.com/apis/TIS-CCA/EndCustomerApi/0.1.17
+  Example:
+    '/api/v0.14/admin/myMandant/users':
+      get:
+        tags:
+          - Benutzer
+          - Filterable
+        operationId: Users
+        summary: 'Gets a BenutzerViewModel pageset'
+        parameters:
+          - $ref: '#/components/parameters/pagingPerPageParam'
+          - $ref: '#/components/parameters/pagingPageNumberParam'
+          - $ref: '#/components/parameters/orderByParam'
+        responses:
+          '200':
+            description: Success
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/BenutzerViewModelResultSetPage'
+          '400':
+            description: Bad request, invalid model state
+          '500':
+            description: 'ServerError'
