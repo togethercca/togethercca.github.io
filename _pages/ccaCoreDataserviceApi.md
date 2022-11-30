@@ -487,6 +487,12 @@ Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/pers
 
 # Changelog
 
+## 2.171 (30.11.2022)
+
+* StatusCode is changed from number to string (OMDS Code of item) in PATCH/vertraege/{verId}/vertragsparten/{vspId}
+* Only valid risks are transferred by the endpoints: GET/personen/{perId}/sachRisiken and GET/personen/{perId}/kfzRisiken. So the values of Gültig Ab (valid from) and Gültig Bis (valid to) are taken into account by the logic.
+* Person's GET/PATCH/POST has changed/fixed. Rechtsform and UID handling is fixed in sonstige person. Firmenbuchnummer is removed from SonstigePerson and Socialversicherungsnummer is removed from natürliche person. Both can be found in person's identifizierung section just as before.
+
 ## 2.50
 
 * Filtering for nested properties is now possible
