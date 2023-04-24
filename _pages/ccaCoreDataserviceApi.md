@@ -486,6 +486,12 @@ Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/pers
 ```
 
 # Changelog
+## 2.174 (18.04.2023)
+* Added new endpoint: POST/personen/{perId}/Legitimationen
+* Added new endpoint: PATCH/personen/{perId}/Legitimationen
+* Added new endpoint: GET/personen/{perId}/Legitimationen
+* Added new endpoint: POST/dokumente/{dokId}/unterschriftLinkErstellen/{perId}
+* Removed "firmenbuchnummer" property from SonstigePersonModel
 
 ## 2.171 (30.11.2022)
 
