@@ -16,8 +16,8 @@ Current Version
 ===============  
 You can find the current Version of the API specification as swagger file and a browsable version of it here:   
 
-* [swagger file](https://api.swaggerhub.com/apis/tiscca/EndCustomerApi/0.1.11/swagger.json)  
-* [browsable version](https://swaggerhub.com/api/tiscca/EndCustomerApi/)  
+* [swagger file](https://api.swaggerhub.com/apis/TIS-CCA/EndCustomerApi/0.1.17/swagger.json)
+* [browsable version](https://swaggerhub.com/api/TIS-CCA/EndCustomerApi/0.1.17)  
 
 Security Considerations
 =======================
@@ -82,13 +82,14 @@ HTTP/1.1 410 Gone
 HTTP Verbs
 ==========
 
-|Verb    | Description									|
-|--------|:---------------------------------------------|
-| HEAD   | Retrieve just the HTTP header info			|
-| GET    | Used for retrieving resources.				|
-| POST   | Used for creating resources.					|
-| PUT    | Used for replacing resources or collections.	|
-| DELETE | Used for deleting resources.					|
+|Verb    | Description													|
+|--------|:-------------------------------------------------------------|
+| HEAD   | Retrieve just the HTTP header info							|
+| GET    | Used for retrieving resources.								|
+| POST   | Used for creating resources.									|
+| PUT    | Used for replacing resources or collections.					|
+| PATCH  | Used for modifying the values of the resource properties.	|
+| DELETE | Used for deleting resources.									|
 
 
 # Prerequisites 
@@ -438,6 +439,47 @@ Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons/42" -
 ```
 
 ## Changelog
+03.04.2023 Added endpoints to ProVersum: https://app.swaggerhub.com/apis/TIS-CCA/EndCustomerApi/0.1.18
+  '/api/v0.14/admin/myMandant/user/{userId}':
+    patch:
+      tags:
+        - Benutzer
+      operationId: PatchUser
+      summary: Patches a user
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: c71b45b4-6b45-4c0d-9a1e-9d0af8198601
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditUserDto'
+        required: true
+      responses:
+        '204':
+          description: No content
+        '400':
+          description: Bad request
+        '404':
+          description: Not found
+        '500':
+          description: Internal Server Error
+		  
+	Extended BenutzerViewModel with role (SecurableVertrag, Vertragsichtrecht). Related endpoints:
+	
+	GET /api/v0.14/admin/myMandant/users (Gets a BenutzerViewModel pageset)
+	GET /api/v0.14/admin/myMandant/securables/vertraege
+	GET /api/v0.14/admin/myMandant/securables/vertraege/{vertragId}
+	GET /api/v0.14/admin/myMandant/securables/benutzer/{benutzerId}
+	
+	Extended UserCreateRequest model with role. Related endpoints:
+	
+	POST /api/v0.14/admin/myMandant/users (Insert user)
+
 30.11.2022 Published all endpoints related and relevant to Proversum: https://app.swaggerhub.com/apis/TIS-CCA/EndCustomerApi/0.1.17
   Example:
     '/api/v0.14/admin/myMandant/users':
