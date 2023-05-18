@@ -441,6 +441,7 @@ Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons/42" -
 ## Changelog
 0.1.18 (17.05.2023) 
 Added endpoints to ProVersum: https://app.swaggerhub.com/apis/TIS-CCA/EndCustomerApi/0.1.18
+
   '/api/v0.14/admin/myMandant/user/{userId}':
     patch:
       tags:
