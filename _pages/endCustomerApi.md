@@ -16,8 +16,8 @@ Current Version
 ===============  
 You can find the current Version of the API specification as swagger file and a browsable version of it here:   
 
-* [swagger file](https://api.swaggerhub.com/apis/TIS-CCA/EndCustomerApi/0.1.17/swagger.json)
-* [browsable version](https://swaggerhub.com/api/TIS-CCA/EndCustomerApi/0.1.17)  
+* [swagger file](https://api.swaggerhub.com/apis/TIS-CCA/EndCustomerApi/0.1.18/swagger.json)
+* [browsable version](https://swaggerhub.com/api/TIS-CCA/EndCustomerApi/0.1.18)
 
 Security Considerations
 =======================
@@ -439,6 +439,65 @@ Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons/42" -
 ```
 
 ## Changelog
+0.1.18 (17.05.2023) 
+Added endpoints to ProVersum: https://app.swaggerhub.com/apis/TIS-CCA/EndCustomerApi/0.1.18
+  '/api/v0.14/admin/myMandant/user/{userId}':
+    patch:
+      tags:
+        - Benutzer
+      operationId: PatchUser
+      summary: Patches a user
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: c71b45b4-6b45-4c0d-9a1e-9d0af8198601
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditUserDto'
+        required: true
+      responses:
+        '204':
+          description: No content
+        '400':
+          description: Bad request
+        '404':
+          description: Not found
+        '500':
+          description: Internal Server Error
+
+  '/api/v0.14/schaeden/{schadenId}/beziehungen':
+    get:
+      tags:
+        - Schaeden
+        - Filterable
+        - Sortable
+      operationId: getSchadenBeziehungen
+      parameters:
+        - name: schadenId
+          in: path
+          description: Id of the Schaden
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - $ref: '#/components/parameters/pagingPerPageParam'
+        - $ref: '#/components/parameters/pagingPageNumberParam'
+        - $ref: '#/components/parameters/orderByParam'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchadenBeteiligterWithOMDSResultSetPage'
+        '404':
+          description: Error 404
+
 03.04.2023 Added endpoints to ProVersum: https://app.swaggerhub.com/apis/TIS-CCA/EndCustomerApi/0.1.18
   '/api/v0.14/admin/myMandant/user/{userId}':
     patch:
