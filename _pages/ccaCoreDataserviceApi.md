@@ -486,6 +486,12 @@ Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/pers
 ```
 
 # Changelog
+## 2.175 (17.05.2023)
+* "vspKontoId" would not be set to NULL if "vermittlernummer" is not passed, but verDefaultKontoId will be used instead. Affected endpoints:
+** POST /personen/{perId}/antraege
+** POST /personen/{perId}/vertraege
+** POST /personen/{perId}/offerte
+
 ## 2.174 (18.04.2023)
 * Added new endpoint: POST/personen/{perId}/Legitimationen
 * Added new endpoint: PATCH/personen/{perId}/Legitimationen
