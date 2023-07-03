@@ -450,7 +450,7 @@ Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons/42" -
 	
 * Extended Vertrag model with property: VuNr
   * Affected models: VertragResultSetPage, SecurableVertrag, SecurableVertragResultSetPage
-  * Affetced endpoints:
+  * Affected endpoints:
     * GET /api/v0.14/vertraege
 	* GET /api/v0.14/dokumente/{dokumentId}/vertraege
 	* GET /api/v0.14/personen/{personId}/vertraege
