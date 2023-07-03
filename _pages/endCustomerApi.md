@@ -438,7 +438,27 @@ If the Accept-Language Header is set, the api will return dimensional data trans
 Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons/42" -Headers @{'Accept-Language'='en-us'}
 ```
 
-## Changelog
+# Changelog
+## 2.176 (0.1.19 - 27.06.2023)
+* New endpoint:
+  * GET /api/v0.14/benutzer/personen (Provides the persons of the mandant of the benutzer (logged in user / caller))
+  
+* Extended Schadenmeldung model with properties: sachRisikoId, kfzRisikoId, personRisikoId, vertragId
+  * Affected endpoints:
+    * POST /api/v0.14/vertraege/{vertragId}/schadenmeldungen
+	* POST /api/v0.14/personen/{personId}/schadenmeldungen
+	
+* Extended Vertrag model with property: VuNr
+  * Affected models: VertragResultSetPage, SecurableVertrag, SecurableVertragResultSetPage
+  * Affetced endpoints:
+    * GET /api/v0.14/vertraege
+	* GET /api/v0.14/dokumente/{dokumentId}/vertraege
+	* GET /api/v0.14/personen/{personId}/vertraege
+	* GET /api/v0.14/kfzRisiken/{kfzRisikoId}/vertraege
+	* GET /api/v0.14/sachRisiken/{sachRisikoId}/vertraege
+	* GET /api/v0.14/admin/myMandant/securables/benutzer/{benutzerId}
+	* GET/ /api/v0.14/admin/myMandant/securables/vertraege
+
 0.1.18 (17.05.2023) 
 Added endpoints to ProVersum: https://app.swaggerhub.com/apis/TIS-CCA/EndCustomerApi/0.1.18
 

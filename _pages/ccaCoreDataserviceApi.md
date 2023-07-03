@@ -486,6 +486,14 @@ Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/pers
 ```
 
 # Changelog
+## 2.176 (1.210.14 - 27.06.2023)
+* New endpoint:
+  * DELETE /personen/{perId}/beziehungen (Removes the relationships of the person)
+* Extended endpoints with new input parameter:
+  * POST /vertraege/{verId}/personRisiken (Links an existing Person to a contract as a risk / usable with array of person ids)
+  * POST /vertraege/{verId}/kfzRisiken (Creates a KFZ to Vertrag {verId} / usable with array of KFZ Risiken)
+  * POST /vertraege/{verId}/sachRisiken (Creates a NKP to Vertrag {verId} or only links them (existingRiskObject, existingRiskObjectCollection) / usable with array of NKP Risiken)
+
 ## 2.175 (17.05.2023)
 * "vspKontoId" would not be set to NULL if "vermittlernummer" is not passed, but verDefaultKontoId will be used instead. Affected endpoints:
   * POST /personen/{perId}/antraege
