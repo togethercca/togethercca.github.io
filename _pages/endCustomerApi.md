@@ -439,6 +439,10 @@ Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons/42" -
 ```
 
 # Changelog
+## 2.177 (0.1.20 - 25.07.2023)
+* New endpoint:
+	* GET /api/schaeden/personBeziehungsarten  
+
 ## 2.176 (0.1.19 - 27.06.2023)
 * New endpoint:
   * GET /api/v0.14/benutzer/personen (Provides the persons of the mandant of the benutzer (logged in user / caller))

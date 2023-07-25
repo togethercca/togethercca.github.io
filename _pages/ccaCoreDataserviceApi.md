@@ -486,6 +486,9 @@ Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/pers
 ```
 
 # Changelog
+## 2.177 (1.210.15 - 25.07.2023)
+* No modifications
+
 ## 2.176 (1.210.14 - 27.06.2023)
 * New endpoint:
   * DELETE /personen/{perId}/beziehungen (Removes the relationships of the person)
