@@ -440,23 +440,25 @@ Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons/42" -
 
 # Changelog
 ## 2.18 (0.1.21 - 07.08.2023)
-* New endpoint:
-	* POST /api/v0.21/vertraege/{vertragId}/schadenmeldungen (supports multiple beteiligter)
 * Changed endpoint (rename existing references to support multiple versions)
 	* POST /api/v0.14/vertraege/{vertragId}/schadenmeldungen
 		* operationId changed to createSchadenmeldungForVertragv14
 		* model name changed to /components/schemas/Schadenmeldungv14
-* New endpoint:
-	* POST /api/v0.21/personen/{personId}/schadenmeldungen (supports multiple beteiligter)
 * Changed endpoint (rename existing references to support multiple versions)
 	* POST /api/v0.14/personen/{personId}/schadenmeldungen
 		* operationId changed to createSchadenmeldungForPersonv14
 		* model name changed to /components/schemas/Schadenmeldungv14
-* Schema Changes
+* Changes schema
 	* renamed existing Schadenmeldung to Schadenmeldungv14 (to support multiple versions)
+* New endpoint:
+	* POST /api/v0.21/vertraege/{vertragId}/schadenmeldungen (supports multiple beteiligter)
+* New endpoint:
+	* POST /api/v0.21/personen/{personId}/schadenmeldungen (supports multiple beteiligter)
+* New schema
  	* created new Schadenmeldung as copy of Schadenmeldungv14
   		* removed beteiligter of type /components/schemas/SchadenBeteiligter
  		* added beteiligte as array of type /components/schemas/SchadenBeteiligter
+
 ## 2.177 (0.1.20 - 25.07.2023)
 * New endpoint:
 	* GET /api/schaeden/personBeziehungsarten  
