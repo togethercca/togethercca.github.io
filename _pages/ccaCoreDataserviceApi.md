@@ -486,18 +486,12 @@ Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/pers
 ```
 
 # Changelog
-## 2.182 (1.210.18 - 14.11.2023)
+## 2.182 (1.210.16 - 14.11.2023)
 * New endpoint:
   * PATCH /dokumente/{dokId} (Edits (via patch) a dokument per Id)
 * Extended endpoints with new input parameter:
   * POST /sachRisiken/{sachRisikoId}/dokumente (extended with description)
   * POST /kfzRisiken/{kfzRisikoId}/dokumente (extended with description)
-
-## 2.181 (1.210.17 - 04.10.2023)
-* No modifications
-
-## 2.180 (1.210.16 - 30.08.2023)
-* No modifications
 
 ## 2.177 (1.210.15 - 25.07.2023)
 * No modifications
