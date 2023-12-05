@@ -442,9 +442,9 @@ Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons/42" -
 ## 2.183 (0.1.22 - 04.12.2023)
 * Changed schema
 	* SchadenBeteiligter
-		* vorname is not reuired
-		* nachname required
-		* anrede required
+		* vorname has become optional
+		* nachname has become required
+		* anrede has become required
 			* Affected schemas: Schadenmeldung, Schadenmeldungv14
 			* Affected endpoints:
 				* POST /api/v0.14/vertraege/{vertragId}/schadenmeldungen
