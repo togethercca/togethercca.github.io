@@ -439,21 +439,32 @@ Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons/42" -
 ```
 
 # Changelog
+## 2.183 (0.1.22 - 04.12.2023)
+* Changed schema
+	* SchadenBeteiligter
+		* vorname is not reuired
+		* nachname required
+		* anrede required
+			* Affected schemas: Schadenmeldung, Schadenmeldungv14
+			* Affected endpoints:
+				* POST /api/v0.14/vertraege/{vertragId}/schadenmeldungen
+				* POST /api/v0.21/vertraege/{vertragId}/schadenmeldungen
+				* POST /api/v0.14/personen/{personId}/schadenmeldungen
+				* POST /api/v0.21/personen/{personId}/schadenmeldungen
+	
 ## 2.18 (0.1.21 - 07.08.2023)
-* Changed endpoint (rename existing references to support multiple versions)
+* Changed endpoints (rename existing references to support multiple versions)
 	* POST /api/v0.14/vertraege/{vertragId}/schadenmeldungen
 		* operationId changed to createSchadenmeldungForVertragv14
 		* model name changed to /components/schemas/Schadenmeldungv14
-* Changed endpoint (rename existing references to support multiple versions)
 	* POST /api/v0.14/personen/{personId}/schadenmeldungen
 		* operationId changed to createSchadenmeldungForPersonv14
 		* model name changed to /components/schemas/Schadenmeldungv14
-* Changes schema
-	* renamed existing Schadenmeldung to Schadenmeldungv14 (to support multiple versions)
-* New endpoint:
+* New endpoints:
 	* POST /api/v0.21/vertraege/{vertragId}/schadenmeldungen (supports multiple beteiligter)
-* New endpoint:
 	* POST /api/v0.21/personen/{personId}/schadenmeldungen (supports multiple beteiligter)
+* Changed schema
+	* renamed existing Schadenmeldung to Schadenmeldungv14 (to support multiple versions)
 * New schema
  	* created new Schadenmeldung as copy of Schadenmeldungv14
   		* removed beteiligter of type /components/schemas/SchadenBeteiligter
