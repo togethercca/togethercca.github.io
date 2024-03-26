@@ -486,9 +486,24 @@ Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/pers
 ```
 
 # Changelog
+## 2.190 (1.210.18 - 02.04.2024)
+* Added parameters 
+	* sepaMandatBeginn
+	* sepaMandatReferenz
+	* to
+	* BankkontoCreateModel
+		* POST /personen/{perId}/bankkonten/
+	* BankkontoViewModel
+		* GET /personen/{perId}/bankkonten/{bankkontoId}
+	* BankkontoEditModel
+		* PATCH /personen/{perId}/bankkonten/{bankkontoId}
+
 ## 2.184 (1.210.17 - 06.02.2024)
 * New endpoint:
   * DELETE /dokumente/{dokId}
+* Added vuNr property to VertragEditModel
+	* Affected endpoints:
+		* PATCH /vertraege/{verId}
 
 ## 2.182 (1.210.16 - 14.11.2023)
 * New endpoint:
@@ -516,10 +531,10 @@ Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/pers
 
 ## 2.174 (18.04.2023)
 * Added new endpoints:
-	* POST/personen/{perId}/Legitimationen
-	* PATCH/personen/{perId}/Legitimationen
-	* GET/personen/{perId}/Legitimationen
-	* POST/dokumente/{dokId}/unterschriftLinkErstellen/{perId}
+	* POST /personen/{perId}/Legitimationen
+	* PATCH /personen/{perId}/Legitimationen
+	* GET /personen/{perId}/Legitimationen
+	* POST /dokumente/{dokId}/unterschriftLinkErstellen/{perId}
 * Removed "firmenbuchnummer" property from SonstigePersonModel
 
 ## 2.171 (30.11.2022)
@@ -551,6 +566,8 @@ Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/pers
 | 2017-10-18   | 2.50    | 2017-09-28   |
 | 2019-11-15   | 2.100   | 2020-12-01   |
 | 2020-02-17   | 2.102   | 2020-03-01   |
+|			   |		 |				|
+| 2024-03-19   | 2.190   | 2024-04-02	|
 
 
 ## Person Releated Operations
@@ -604,12 +621,14 @@ Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/pers
 
 ## Dokument related Operations
 
-| OperationName | Enitites | description | CCAOnline Version |
-|---------------| -------- | ----------- | ----------------- |
-| getDokumente | Dokumente | Gets a List of Dokumente | 2.50 |
-| getDokument | Dokumente | Gets a Dokument per Id | 2.50 |
-| editDokument | Dokumente | Edits a Dokument per Id | 2.50 |
-| downloadDokument | Dokumente | downloads a document per dokId | 2.50 |
-| updateDokumentContent | Dokumente | Updates a documents content per dokId | 2.50 |
-| createDokumentToPerson | Person, Dokumente | Creats a Dokument to Person {perId} | 2.50 |
-| createDokumentToVertrag | Vertrag, Dokumente | Creats a Dokument to Vertrag {verId} | 2.50 |
+| OperationName 			| Enitites				| description 							| CCAOnline Version |
+| -------------------------	| ---------------------	| ------------------------------------- | ----------------- |
+| getDokumente  			| Dokumente 			| Gets a list of Dokumente 				| 2.50				|
+| getDokument 				| Dokumente 			| Gets a Dokument per Id 				| 2.50				|
+| editDokument				| Dokumente 			| Edits a Dokument per Id 				| 2.50				|
+| downloadDokument			| Dokumente 			| Downloads a Document per dokId 		| 2.50				|
+| updateDokumentContent		| Dokumente 			| Updates a Documents content per dokId | 2.50				|
+| createDokumentToPerson	| Person, Dokumente 	| Creates a Dokument to Person {perId} 	| 2.50				|
+| createDokumentToVertrag	| Vertrag, Dokumente 	| Creates a Dokument to Vertrag {verId}	| 2.50				|
+|							|						|										|					|
+| deleteDokument			| Dokumente				| Deletes a Dokument per Id				| 2.184				|
