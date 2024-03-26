@@ -493,12 +493,12 @@ Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/pers
 	
 	Affected models:
 	
-	* BankkontoCreateModel
-		* POST /personen/{perId}/bankkonten/
-	* BankkontoViewModel
-		* GET /personen/{perId}/bankkonten/{bankkontoId}
+	- **BankkontoCreateModel**
+		* _POST /personen/{perId}/bankkonten/_
+	- **BankkontoViewModel**
+		* _GET /personen/{perId}/bankkonten/{bankkontoId}_
 	- **BankkontoEditModel**
-		- 'PATCH /personen/{perId}/bankkonten/{bankkontoId}'
+		- _PATCH /personen/{perId}/bankkonten/{bankkontoId}_
 
 ## 2.184 (1.210.17 - 06.02.2024)
 * New endpoint:
