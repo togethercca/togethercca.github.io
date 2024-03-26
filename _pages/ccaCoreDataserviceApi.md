@@ -488,17 +488,16 @@ Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/pers
 # Changelog
 ## 2.190 (1.210.18 - 02.04.2024)
 * Added parameters 
-	* _sepaMandatBeginn_
-	* _sepaMandatReferenz_
+	* **sepaMandatBeginn**
+	* **sepaMandatReferenz**
 	
-	Affected models:
-	
-	* **BankkontoCreateModel**
-		* _POST /personen/{perId}/bankkonten/_
-	* **BankkontoViewModel**
-		* _GET /personen/{perId}/bankkonten/{bankkontoId}_
-	* **BankkontoEditModel**
-		* _PATCH /personen/{perId}/bankkonten/{bankkontoId}_
+	* Affected models:
+		* **BankkontoCreateModel**
+			* _POST /personen/{perId}/bankkonten/_
+		* **BankkontoViewModel**
+			* _GET /personen/{perId}/bankkonten/{bankkontoId}_
+		* **BankkontoEditModel**
+			* _PATCH /personen/{perId}/bankkonten/{bankkontoId}_
 
 ## 2.184 (1.210.17 - 06.02.2024)
 * New endpoint:
