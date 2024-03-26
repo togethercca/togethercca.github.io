@@ -489,14 +489,16 @@ Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/pers
 ## 2.190 (1.210.18 - 02.04.2024)
 * Added parameters 
 	* sepaMandatBeginn
-	* sepaMandatReferenz
-	* to
+	- 'sepaMandatReferenz'
+	
+	Affected models:
+	
 	* BankkontoCreateModel
 		* POST /personen/{perId}/bankkonten/
 	* BankkontoViewModel
 		* GET /personen/{perId}/bankkonten/{bankkontoId}
-	* BankkontoEditModel
-		* PATCH /personen/{perId}/bankkonten/{bankkontoId}
+	- **BankkontoEditModel**
+		- 'PATCH /personen/{perId}/bankkonten/{bankkontoId}'
 
 ## 2.184 (1.210.17 - 06.02.2024)
 * New endpoint:
