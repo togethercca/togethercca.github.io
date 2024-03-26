@@ -439,6 +439,29 @@ Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons/42" -
 ```
 
 # Changelog
+## 2.190 (0.1.23 - 02.04.2024)
+* **Changed schemas**
+	* **Schaden**
+		* added schadenAktuelleReserve
+		* added schadenHoeheGegner
+		* added schadenZahlungSummeGegner
+			* **Affected schemas**
+				* SchadenResultSetPage
+			* **Affected endpoints**
+				* _GET /api/v0.14/schaeden/{schadenId}_
+				* _GET /api/v0.14/schaeden_
+				* _GET /api/v0.14/vertraege/{vertragId}/schaeden_
+				* _GET /api/v0.14/dokumente/{dokumentId}/schaeden_
+				* _GET /api/v0.14/personen/{personId}/schaeden_
+	* **DashboardVertrag**
+		* added jahresGesamtPraemie
+			* Affected schemas:
+			* Affected endpoints:
+				* _GET /api/v0.14/dashboard/vertrag/{reportYear}_
+* **Removed endpoints**
+	* _POST /api/v0.21/vertraege/{vertragId}/schadenmeldungen_
+	* _POST /api/v0.14/vertraege/{vertragId}/schadenmeldungen_
+			
 ## 2.183 (0.1.22 - 04.12.2023)
 * Changed schema
 	* SchadenBeteiligter
