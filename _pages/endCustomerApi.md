@@ -439,6 +439,9 @@ Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons/42" -
 ```
 
 # Changelog
+## CCAOnline version 2.191 (CCA End Customer API Version - 0.1.24 - Release date 14.05.2024)
+* **No changes**
+
 ## 2.190 (0.1.23 - 02.04.2024)
 * **Changed schemas**
 	* **Schaden**
