@@ -486,7 +486,7 @@ Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/pers
 ```
 
 # Changelog
-## CCAOnline version 2.191 (CCA Core DataService API Version - 1.210.19 - Release date 14.05.2024)
+## CCAOnline v2.191 (CCA Core DataService API v1.210.19 - Rel.date 14.05.2024)
 * **Added endpoint**
 	* GET /vertraege/{verId}/beziehungen
 
