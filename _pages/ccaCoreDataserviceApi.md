@@ -489,13 +489,13 @@ Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/pers
 ## CCA Core DataService API v1.210.20 (CCAOnline v2.192 - Rel.date 25.06.2024)
 * Added versicherung property (Name of the insurance company) to VertragViewModel
 	* Affected endpoints:
-		* GET /personen/{perId}/vertraege
-		* GET /vertraege
-		* GET /vertraege/{verId}
+		* _GET /personen/{perId}/vertraege
+		* _GET /vertraege
+		* _GET /vertraege/{verId}
 
 ## CCA Core DataService API v1.210.19 (CCAOnline v2.191 - Rel.date 14.05.2024)
 * **Added endpoint**
-	* GET /vertraege/{verId}/beziehungen
+	* _GET /vertraege/{verId}/beziehungen
 
 ## 2.190 (1.210.18 - 02.04.2024)
 * **Added parameters**
