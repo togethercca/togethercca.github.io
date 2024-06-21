@@ -439,8 +439,16 @@ Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons/42" -
 ```
 
 # Changelog
-## CCAOnline v2.191 (CCA End Customer API v0.1.24 - Rel.date 14.05.2024)
-* **No changes**
+## CCA End Customer API v0.1.24 (CCAOnline v2.192 - Rel.date 25.06.2024)
+* Changed schema
+	* ortId in SchadenMeldung has become nullable
+		* Affected schemas: Schadenmeldung, Schadenmeldungv14
+		* Affected endpoints:
+			* _POST /api/v0.14/personen/{personId}/schadenmeldungen_
+			* _POST /api/v0.21/personen/{personId}/schadenmeldungen_
+	* added mainBetreuer (mitarbeiter) to Userinfo
+		* Affected endpoints:
+			* _GET userinfo_
 
 ## 2.190 (0.1.23 - 02.04.2024)
 * **Changed schemas**
