@@ -486,6 +486,10 @@ Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/pers
 ```
 
 # Changelog
+## 2.193 (1.210.21)
+* Added db information to health status
+	* Affected endpoints:
+ 		* coredataservice/health
 ## CCA Core DataService API v1.210.20 (CCAOnline v2.192 - Rel.date 25.06.2024)
 * Added versicherung property (Name of the insurance company) to VertragViewModel
 	* Affected endpoints:
