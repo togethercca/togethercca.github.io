@@ -277,15 +277,28 @@ Data Filtering
 
 Filtering on the list api actions can be achieved by providing the property names as query parameter key and the filter expression as the associated value. The property names are case-insensitive.
 
+This query gets persons who are customers
+
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/personen?geburtstag=2016-05-19"
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/personen?istkunde=true
+```
+
+
+Filtering by nested types is also possible. For example filtering Persons by the name of the "natuerlichePerson" the request has to look like the following:
+
+```powershell
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/personen?natuerlichePerson.name=Testname
+```
+
+```powershell
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/personen?natuerlichePerson.geburtsDatum=2016-05-19"
 ```
 
 If an value is specified that does not match the property type, the api responds with `400 Bad Request`. 
 Date values must be passed in the form `YYYY-MM-DD`.
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/personen?geburtstag=2016-05-19T10:25:00.928Z
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/personen?natuerlichePerson.geburtsDatum=2016-05-19T10:25:00.928Z
 
 HTTP/1.1 400 Bad Request
 ```
@@ -293,20 +306,9 @@ HTTP/1.1 400 Bad Request
 This query gets persons with geburtstags after the 1. Jan 1990
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/personen?geburtstag=2016-05-19
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/personen?natuerlichePerson.geburtsDatum=2016-05-19
 ```
 
-This query gets persons who are customers
-
-```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/personen?istkunde=true
-```
-
-Filtering by nested types is also possible. For example filtering Persons by the name of the "natuerlichePerson" the request has to look like the following:
-
-```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/personen?natuerlichePerson.name=Testname
-```
 
 Filtering is although still only possible for properties which are part of the entity itself like name, birthday etc. For example filtering for sonstigePerson.sonstigPersonArt ist still not possible as here fields of the Table Anrede would have to be considered and not Person.
 
