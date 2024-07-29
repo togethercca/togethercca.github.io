@@ -267,7 +267,7 @@ You can order by mulitple properties by providing the orderBy parameter multiple
 The parameters will be resolved from left to right.
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/personen?orderBy=name-asc&orderBy=geburtstag-desc"
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/personen?orderBy=name-asc&orderBy=natuerlichePerson.geburtsDatum-desc"
 ```
 
 Returns a list of persons sorted by `name` (in ascending order) and `geburtstag` (in descending order).
@@ -347,13 +347,13 @@ However, the operation can be overridden with a second query parameter, with a k
 This query gets persons with geburtstags after the 1. Jan 1990
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/personen?geburtstag=1990-01-01&geburtstag+op=gt"
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/personen?natuerlichePerson.geburtsDatum=1990-01-01&natuerlichePerson.geburtsDatum+op=gt"
 ```
 
 If an operation is specified that is not available in general, the api responds with `400 Bad Request`.
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/personen?geburtstag=1990-01-01&geburtstag+op=gaussian"
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/personen?natuerlichePerson.geburtsDatum=1990-01-01&natuerlichePerson.geburtsDatum+op=gaussian"
 
 HTTP/1.1 400 Bad Request
 ```
@@ -361,7 +361,7 @@ HTTP/1.1 400 Bad Request
 If an operation is specified, but not the respective filter expression, the api responds with `400 Bad Request`.
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/personen?geburtstag+op=eq"
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/personen?natuerlichePerson.geburtsDatum+op=eq"
 
 HTTP/1.1 400 Bad Request
 ```
@@ -369,7 +369,7 @@ HTTP/1.1 400 Bad Request
 If an operation is specified that is not available for the type, the api responds with (400) Bad Request.
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/personen?geburtstag=2016-05-19&geburtstag+op=sw"
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/personen?natuerlichePerson.geburtsDatum=2016-05-19&natuerlichePerson.geburtsDatum+op=sw"
 
 HTTP/1.1 400 Bad Request
 ```
@@ -391,7 +391,7 @@ If multiple filters are passed they are always logically composed with AND.
 This query gets people born on the 1. Jan 1990 named steve.
 
 ```powershell
-Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/personen?geburtstag=1990-01-01&name=steve"
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/personen?natuerlichePerson.geburtsDatum=1990-01-01&name=steve"
 ```
 
 ### Case Sensitivity
