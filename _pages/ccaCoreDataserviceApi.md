@@ -272,6 +272,13 @@ Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/pers
 
 Returns a list of persons sorted by `name` (in ascending order) and `geburtstag` (in descending order).
 
+Note: If you use just the `orderBy` without the `perPage` and `page` parameters, you will always get the first page and a the maximum allowed number of rows per page ordered.
+If you want to use the `orderBy` and query a specific page and a specific number of elements on the page, you can do so by using:
+
+```powershell
+Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/personen?perPage=20&page=4&orderBy=id-desc"
+```
+
 Data Filtering 
 ==============
 
