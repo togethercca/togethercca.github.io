@@ -439,7 +439,17 @@ Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons/42" -
 ```
 
 # Changelog
-## CCA End Customer API v0.1.24 (CCAOnline v2.192 - Rel.date 25.06.2024)
+## CCA End Customer API 
+
+## 2.200 (0.1.25 - 17.09.2024)
+* Two-factor authentication can now be configured using e-mail as 2fa code provider
+* Password minimal complexity can now be configured to high level. Endpoint will return a more detailed error response if the complexity does not meet the requirement.
+ 	* **Medium**
+  		* (default) minimal 6 characters, spaces are not allowed
+ 	* **High**
+  		* Minimum of 12 characters and 3 of 4 complexity criteria need to be met (password must contain a variation of casing and at least one number or special character).
+  
+## 2.192 v0.1.24 (CCAOnline v2.192 - Rel.date 25.06.2024)
 * Changed schema
 	* ortId in SchadenMeldung has become nullable
 		* Affected schemas: Schadenmeldung, Schadenmeldungv14
@@ -450,6 +460,7 @@ Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons/42" -
 		* Affected endpoints:
 			* _GET userinfo_
 
+ 
 ## 2.190 (0.1.23 - 02.04.2024)
 * **Changed schemas**
 	* **Schaden**
