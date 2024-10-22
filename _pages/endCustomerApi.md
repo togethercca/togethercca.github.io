@@ -441,6 +441,9 @@ Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons/42" -
 # Changelog
 ## CCA End Customer API 
 
+## 2.201 (0.1.26 - 29.10.2024)
+* Added Authorization Code Flow with Proof Key for Code Exchange (PKCE)
+
 ## 2.200 (0.1.25 - 17.09.2024)
 * Two-factor authentication can now be configured using e-mail as 2fa code provider
 * Password minimal complexity can now be configured to high level. Endpoint will return a more detailed error response if the complexity does not meet the requirement.
@@ -448,18 +451,76 @@ Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons/42" -
   		* (default) minimal 6 characters, spaces are not allowed
  	* **High**
   		* Minimum of 12 characters and 3 of 4 complexity criteria need to be met (password must contain a variation of casing and at least one number or special character).
-  
-## 2.192 v0.1.24 (CCAOnline v2.192 - Rel.date 25.06.2024)
-* Changed schema
-	* ortId in SchadenMeldung has become nullable
-		* Affected schemas: Schadenmeldung, Schadenmeldungv14
-		* Affected endpoints:
-			* _POST /api/v0.14/personen/{personId}/schadenmeldungen_
-			* _POST /api/v0.21/personen/{personId}/schadenmeldungen_
-	* added mainBetreuer (mitarbeiter) to Userinfo
-		* Affected endpoints:
-			* _GET userinfo_
+* **New endpoints**
+  * _POST /api/v0.14/schaeden/{schadenId}/dokumente_
+    * Creates schadenmeldung via attachments
 
+Check date!!!!
+* **New schemas** 
+    * _SchadenmeldungAttachmentsRequest (array of SchadenAttachment)_
+      * Affected endpoints:
+        * _POST /api/v0.14/schaeden/{schadenId}/dokumente_
+    * _ProblemDetails (detail: string, instance: string, title: string, type: string, )_
+      * Affected endpoints:
+        * _PATCH api/v0.14/profile/password (response content for HTTP 405)_
+* **Changed schemas**
+  * Dokument
+    * new properties:
+      *  _dokumentArtCode (string)_
+      *  _dokumentArtText (string)_
+    * Affected endpoints:
+      * _GET /api/v0.14/dokumente/{dokumentId}_
+    * **Affected models:** 
+      * DokumentResultSetPage
+        * _GET /api/v0.14/schaeden/{schadenId}/dokumente_
+        * _GET /api/v0.14/vertraege/{vertragId}/dokumente_
+        * _GET /api/v0.14/dokumente_
+        * _GET /api/v0.14/personen/{personId}/dokumente_
+        * _GET /api/v0.14/kfzRisiken/{kfzRisikoId}/dokumente_
+        * _GET /api/v0.14/sachRisiken/{sachRisikoId}/dokumente_
+  * HealtResponse
+    * new properties:
+      * _description (string)_
+    * changed properties:
+      * details changed from HealthDetail to array of HealthDetail
+    * removed properties:
+      * _version (string)_
+      * _releaseId (string)_
+      * _serviceId: string_
+  * HealthStatus (enum string)
+    * changed possible values:
+      * _old values: - Pass, - Fail, - Warn
+      * _new values: - UNKNOWN, - UP, - WARNING, - OUT_OF_SERVICE, - DOWN_
+  *  HealthDetail
+     *  removed properties:
+        * _componentId (string)_
+        * _measurementName (string)_
+        * _componentType (string)_
+        * _observedValue (string)_
+        * _observedUnit (string)_
+        * _status (HealthStatus)_
+        * _time (string, format: date-time)_
+        * _output (string)_
+     *  key value pairs for additional health information instead of properties
+  
+## 2.192 (0.1.24 - 25.06.2024)
+* **New schemas**
+  * _Behoerde (istGemeldet: boolean, name: string)_
+* **Changed schemas**
+  * Schadenmeldung
+    * extended properties:
+      * _behoerde (Behoerde)_
+        * Affected endpoints:
+          * _POST /api/v0.21/personen/{personId}/schadenmeldungen_
+  	* ortId has become nullable
+  		* Affected schemas: Schadenmeldung, Schadenmeldungv14
+  		* Affected endpoints:
+  			* _POST /api/v0.14/personen/{personId}/schadenmeldungen_
+  			* _POST /api/v0.21/personen/{personId}/schadenmeldungen_
+	* UserInfo
+  	* added mainBetreuer (mitarbeiter)
+  		* Affected endpoints:
+  			* _GET userinfo_
  
 ## 2.190 (0.1.23 - 02.04.2024)
 * **Changed schemas**

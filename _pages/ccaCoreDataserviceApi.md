@@ -498,17 +498,18 @@ Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/pers
 ## CCA Core DataService API
 
 ## 2.201 (1.210.22)
-* **New endpoint**
+* **New endpoints**
 	* _PUT /dokumente/{dokId}_
   	* Replaces the binary content of a document identified by {dokId} of Dokument
-* **VertragViewModel has been extended with a new value**
-  * _sort_
-    * Sorting value assigned to the contract
+* **Changed schemas**
+  * VertragViewModel 
+    * new properties:
+      * _sort (string)_
+        * Sorting value assigned to the contract
     * Affected endpoints:
       * _GET /vertraege_
       * _GET /vertraege/{verId}_
       * _GET /personen/{perId}/vertraege_
-
 ## 2.193 (1.210.21)
 * Added db information to health status
 	* Affected endpoints:
@@ -522,7 +523,7 @@ Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/pers
 		* _GET /vertraege/{verId}_
 
 ## 2.191 (1.210.19)
-* **New endpoint**
+* **New endpoints**
 	* _GET /vertraege/{verId}/beziehungen_
 
 ## 2.190 (1.210.18 - 02.04.2024)
