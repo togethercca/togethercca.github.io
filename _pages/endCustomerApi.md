@@ -451,11 +451,10 @@ Invoke-RestMethod -Uri "https://eca.ccaedv.at/endcustomer/api/v0.1/persons/42" -
   		* (default) minimal 6 characters, spaces are not allowed
  	* **High**
   		* Minimum of 12 characters and 3 of 4 complexity criteria need to be met (password must contain a variation of casing and at least one number or special character).
+
 * **New endpoints**
   * _POST /api/v0.14/schaeden/{schadenId}/dokumente_
     * Creates schadenmeldung via attachments
-
-Check date!!!!
 * **New schemas** 
     * _SchadenmeldungAttachmentsRequest (array of SchadenAttachment)_
       * Affected endpoints:
@@ -470,7 +469,7 @@ Check date!!!!
       *  _dokumentArtText (string)_
     * Affected endpoints:
       * _GET /api/v0.14/dokumente/{dokumentId}_
-    * **Affected models:** 
+    * Affected models:* 
       * DokumentResultSetPage
         * _GET /api/v0.14/schaeden/{schadenId}/dokumente_
         * _GET /api/v0.14/vertraege/{vertragId}/dokumente_
@@ -489,8 +488,8 @@ Check date!!!!
       * _serviceId: string_
   * HealthStatus (enum string)
     * changed possible values:
-      * _old values: - Pass, - Fail, - Warn
-      * _new values: - UNKNOWN, - UP, - WARNING, - OUT_OF_SERVICE, - DOWN_
+      * old values: _- Pass, - Fail, - Warn_
+      * new values: _- UNKNOWN, - UP, - WARNING, - OUT_OF_SERVICE, - DOWN_
   *  HealthDetail
      *  removed properties:
         * _componentId (string)_
