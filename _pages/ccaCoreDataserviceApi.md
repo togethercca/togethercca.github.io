@@ -510,6 +510,7 @@ Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/pers
       * _GET /vertraege_
       * _GET /vertraege/{verId}_
       * _GET /personen/{perId}/vertraege_
+  
 ## 2.193 (1.210.21)
 * Added db information to health status
 	* Affected endpoints:
