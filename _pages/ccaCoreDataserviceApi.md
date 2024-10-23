@@ -499,7 +499,7 @@ Invoke-RestMethod -Uri "https://ccds.ccaedv.at/coredataservice/api/v1.210.2/pers
 
 ## 2.201 (1.210.22)
 * **New endpoints**
-	* _PUT /dokumente/{dokId}_
+	* _PUT /dokumente/{dokId}/content_
   	* Replaces the binary content of a document identified by {dokId} of Dokument
 * **Changed schemas**
   * VertragViewModel 
